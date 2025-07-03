@@ -51,9 +51,9 @@ export default function App() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
-          {/* Local image for the logo, now correctly pointing to assets/images/logo.png */}
+          {/* Local image for the logo, now correctly pointing relative to the deeply nested file */}
           <Image
-            source={require('./assets/images/logo.png')} // Updated to the correct path
+            source={require('../../assets/images/logo.png')} // Adjusted path based on error
             style={styles.logo}
             resizeMode="contain"
           />
@@ -185,9 +185,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   logo: {
-    width: 200,
-    height: 100,
-    marginBottom: 30,
+    width: 600,
+    height: 300,
+    marginBottom: -50,
   },
   title: {
     fontSize: 26,
