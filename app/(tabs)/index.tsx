@@ -51,9 +51,9 @@ export default function App() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
-          {/* Placeholder for the image */}
+          {/* Local image for the logo, now correctly pointing to assets/images/logo.png */}
           <Image
-            source={{ uri: 'https://placehold.co/200x100/E0E0E0/333333?text=Your+Image+Here' }}
+            source={require('./assets/images/logo.png')} // Updated to the correct path
             style={styles.logo}
             resizeMode="contain"
           />
