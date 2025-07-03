@@ -50,110 +50,108 @@ export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.container}>
-          {/* Local image for the logo, now correctly pointing relative to the deeply nested file */}
-          <Image
-            source={require('../../assets/images/logo.png')} // Adjusted path based on error
-            style={styles.logo}
-            resizeMode="contain"
+        {/* Local image for the logo */}
+        <Image
+          source={require('../../assets/images/logo.png')} // Adjusted path based on typical React Native structure
+          style={styles.logo}
+          resizeMode="contain"
+        />
+
+        <Text style={styles.title}>Create Your Account</Text>
+
+        {/* Full Name Input */}
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Full Name:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Full Name"
+            value={fullName}
+            onChangeText={setFullName}
+            autoCapitalize="words"
           />
+        </View>
 
-          <Text style={styles.title}>Create Your Account</Text>
+        {/* Email Address Input */}
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Email Address:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+        </View>
 
-          {/* Full Name Input */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Full Name:</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Full Name"
-              value={fullName}
-              onChangeText={setFullName}
-              autoCapitalize="words"
+        {/* Password Input */}
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Password:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+        </View>
+
+        {/* Confirm Password Input */}
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Confirm Password:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry
+          />
+        </View>
+
+        {/* Remember Me and Forgot Password */}
+        <View style={styles.optionsContainer}>
+          <View style={styles.rememberMeContainer}>
+            <Switch
+              trackColor={{ false: '#767577', true: '#81b0ff' }}
+              thumbColor={rememberMe ? '#f5dd4b' : '#f4f3f4'}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={() => setRememberMe(previousState => !previousState)}
+              value={rememberMe}
             />
+            <Text style={styles.rememberMeText}>Remember Me</Text>
           </View>
-
-          {/* Email Address Input */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Email Address:</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
-          </View>
-
-          {/* Password Input */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Password:</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
-          </View>
-
-          {/* Confirm Password Input */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Confirm Password:</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-            />
-          </View>
-
-          {/* Remember Me and Forgot Password */}
-          <View style={styles.optionsContainer}>
-            <View style={styles.rememberMeContainer}>
-              <Switch
-                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                thumbColor={rememberMe ? '#f5dd4b' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={() => setRememberMe(previousState => !previousState)}
-                value={rememberMe}
-              />
-              <Text style={styles.rememberMeText}>Remember Me</Text>
-            </View>
-            <TouchableOpacity onPress={handleForgotPassword}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Sign Up Button */}
-          <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-            <Text style={styles.signUpButtonText}>Sign Up</Text>
+          <TouchableOpacity onPress={handleForgotPassword}>
+            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
           </TouchableOpacity>
+        </View>
 
-          {/* OR Separator */}
-          <View style={styles.separatorContainer}>
-            <View style={styles.separatorLine} />
-            <Text style={styles.separatorText}>or</Text>
-            <View style={styles.separatorLine} />
-          </View>
+        {/* Sign Up Button */}
+        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+          <Text style={styles.signUpButtonText}>Sign Up</Text>
+        </TouchableOpacity>
 
-          {/* Sign Up with Google Button */}
-          <TouchableOpacity style={styles.googleSignUpButton} onPress={handleGoogleSignUp}>
-            <Image
-              source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png' }}
-              style={styles.googleIcon}
-            />
-            <Text style={styles.googleSignUpButtonText}>Sign up with Google</Text>
+        {/* OR Separator */}
+        <View style={styles.separatorContainer}>
+          <View style={styles.separatorLine} />
+          <Text style={styles.separatorText}>or</Text>
+          <View style={styles.separatorLine} />
+        </View>
+
+        {/* Sign Up with Google Button */}
+        <TouchableOpacity style={styles.googleSignUpButton} onPress={handleGoogleSignUp}>
+          <Image
+            source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png' }}
+            style={styles.googleIcon}
+          />
+          <Text style={styles.googleSignUpButtonText}>Sign up with Google</Text>
+        </TouchableOpacity>
+
+        {/* Already have an account? Login */}
+        <View style={styles.loginContainer}>
+          <Text style={styles.loginText}>Already have an account?</Text>
+          <TouchableOpacity onPress={handleLogin}>
+            <Text style={styles.loginLink}> Login</Text>
           </TouchableOpacity>
-
-          {/* Already have an account? Login */}
-          <View style={styles.loginContainer}>
-            <Text style={styles.loginText}>Already have an account?</Text>
-            <TouchableOpacity onPress={handleLogin}>
-              <Text style={styles.loginLink}> Login</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -170,23 +168,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     paddingVertical: 20,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#fff', // White background for the form card
-    marginHorizontal: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
+    paddingHorizontal: 20, // Added horizontal padding to the scroll view content
+    alignItems: 'center', // Center content horizontally
   },
   logo: {
-    width: 600,
-    height: 300,
+    width: 600, // Original width
+    height: 300, // Original height
+    maxWidth: '100%', // Ensure it's responsive
     marginBottom: -50,
   },
   title: {
@@ -196,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   inputGroup: {
-    width: '100%',
+    width: '100%', // Full width within the padded scroll view
     marginBottom: 15,
   },
   label: {
@@ -243,11 +231,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 20,
-    shadowColor: '#28a745',
+    // Note: React Native shadows are different from web CSS shadows.
+    // This provides a basic shadow effect.
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
-    elevation: 3,
+    elevation: 3, // For Android
   },
   signUpButtonText: {
     color: '#fff',
@@ -285,7 +275,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    elevation: 2,
+    elevation: 2, // For Android
   },
   googleIcon: {
     width: 20,
